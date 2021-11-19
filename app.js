@@ -43,6 +43,14 @@ app.get('/', function(req, res) {
     res.render(path.join(__dirname + "/views/index.ejs"));
 });
 
+let username = "cum";
+
+app.post('/vips', function(req, res) {
+	if (req.jizz == username) {
+		res.send("welcome to cum :smirk:");
+	}
+});
+
 app.get('*', function(req, res){
   res.status(404).send("404 Not Found!");
 });
