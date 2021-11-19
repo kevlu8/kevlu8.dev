@@ -14,6 +14,16 @@
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "nodemon": "^2.0.15"
-  }
+    "nodemon": "^2.0.15",
+    "snoowrap": "^1.23.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevlu8/kevlu8.dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevlu8/kevlu8.dev/issues"
+  },
+  "homepage": "https://github.com/kevlu8/kevlu8.dev#readme"
 }
