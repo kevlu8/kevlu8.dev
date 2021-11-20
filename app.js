@@ -20,6 +20,32 @@ function readLine() {
 
 readLine();
 
+//Loop through lines of file and store in array - thank you, GitHub Copilot!
+var lines = [];
+var lineReader = require('readline').createInterface({
+  input: require('fs').createReadStream('secrets.txt')
+});
+lineReader.on('line', function (line) {
+  lines.push(line);
+});
+
+//Create readline interface to read secrets.txt
+var rl = readline.createInterface({
+  input: fs.createReadStream('secrets.txt'),
+  output: process.stdout,
+  terminal: false
+});
+
+//Read secrets.txt and store in array
+var lines = [];
+rl.on('line', function (line) {
+  lines.push(line);
+});
+
+for (var i = 0; i < lines.length; i++) {
+	console.log(lines[i]);
+}
+
 //secrets.txt - username, pwd, client id, client secret
 /*
 let UN = readLineNum(1);
