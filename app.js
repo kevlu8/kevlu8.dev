@@ -77,8 +77,24 @@ app.get("/logout", function(req, res) {
 	res.redirect('/');
 });
 
+app.get("/contact", function(req, res) {
+	res.sendFile(path.join(__dirname, "/public/html/contact.html"));
+});
+
+app.get("/about", function(req, res) {
+	res.sendFile(path.join(__dirname, "/public/html/about.html"));
+});
+
+app.get("/quotes", function(req, res) {
+	res.sendFile(path.join(__dirname, "/public/html/quotes.html"));
+});
+
 app.get('/css/main.css', function(req, res) {
 	res.sendFile(path.join(__dirname, "/public/css/main.css"));
+});
+
+app.get('/kevlu8.jpg', function(req, res) {
+	res.sendFile(path.join(__dirname, "/kevlu8.jpg"));
 });
 
 app.get('*', function(req, res){

@@ -1,8 +1,11 @@
 * {
     font-family: "Roboto Mono", monospace;
-    color: #00ff00;
     padding: 0;
     margin: 0;
+    color: #149414;
+    box-sizing: border-box;
+    text-align: center;
+    /* border: 1px solid blue; */
 }
 
 html {
@@ -10,11 +13,40 @@ html {
     background-color: #0f0f0f;
 }
 
+body {
+    margin: 6rem 0 0 0;
+}
+
+a {
+    font-size: 1.1rem;
+}
+
 nav {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
-
+    padding: 1.2rem 2.5rem;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(#0f0f0f, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+} /*im back*/
+
+.nav-container a {
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: color 0.1s linear;
+}
+
+.nav-container a:last-child {
+    margin: 0;
+    margin-left: 0.5rem;
+}
+
+.nav-container a:hover {
+    color: #00ff00;
 }

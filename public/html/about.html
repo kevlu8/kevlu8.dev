@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About kevlu8</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <header>
+        <h1>About kevlu8</h1>
+        <h1>Hi, I'm kevlu8, a <span id="hi"></span></h1>
+    </header>
+    <script>
+        async function wait(s) {
+            return new Promise(resolve => setTimeout(resolve, s * 1000));
+        }
+        function typeWriter(text) {
+            var i = 0;
+            var speed = 50;
+            var txt = text.split("");
+            var elem = document.getElementById("hi");
+            var timer = setInterval(function() {
+                if (i < txt.length) {
+                    elem.innerHTML += txt[i];
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, speed);
+        }
+
+        async function deleteChars() {
+            var elem = document.getElementById("hi");
+            var timer = setInterval(function() {
+                if (elem.innerHTML.length > 0) {
+                    elem.innerHTML = elem.innerHTML.slice(0, -1);
+                } else {
+                    clearInterval(timer);
+                }
+            }, 50);
+            return new Promise(resolve => setTimeout(resolve, 1000));
+        }
+
+        typeWriter("programmer.");
+        wait(3).then(() => {
+            deleteChars().then(() => {
+                typeWriter("YouTuber.");
+                wait(3).then(() => {
+                    deleteChars().then(() => {
+                        typeWriter("gamer.");
+                        wait(3).then(() => {
+                            deleteChars().then(() => {
+                                typeWriter("streamer.");
+                                wait(3).then(() => {
+                                    deleteChars().then(() => {
+                                        typeWriter("weeb. (NOT WEEABOO)");
+                                        wait(3).then(() => {
+                                            deleteChars().then(() => {
+                                                typeWriter("Canadian.");
+                                                wait(3).then(() => {
+                                                    deleteChars().then(() => {
+                                                        typeWriter("random person on the internet.");
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+        
+    </script>
+</body>
+</html>
