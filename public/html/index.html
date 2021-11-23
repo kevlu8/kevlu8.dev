@@ -50,9 +50,10 @@
         var cookie = document.cookie;
         //Get cookie value
         var cookieValue = cookie.split('=')[1];
+        var splitCookie = cookie.split('=');
         if (cookieValue == 'true') {
             document.querySelector('.login').remove();
-        } else {
+        } else { 
             document.querySelector('.logout').remove();
         }
     </script>

@@ -45,6 +45,8 @@ app.get('/', function(req, res) {
 		console.log("found cookie loggedIn");
 		isLoggedIn = true;
 		res.sendFile(path.join(__dirname, "/public/html/index.html"));
+	} else if (req.cookies.friendsOnly) {
+		res.sendFile(path.join(__dirname, "/public/html/index.html"));
 	} else {
 		console.log("no cookie found");
 		res.redirect("/login");
@@ -67,6 +69,10 @@ app.post('/login', function(req, res) {
 	if (req.body.password == config.passwords.mainPwd) {
 		res.cookie("loggedIn", "true", { maxAge: 694200000, httpOnly: false });
 		res.redirect("/");
+	} else if (req.body.password == config.passwords.friendsOnly) {
+		res.cookie("loggedIn", "true", { maxAge: 694200000, httpOnly: false });
+		res.cookie("friendsOnly", "true", { maxAge: 694200000, httpOnly: false });
+		res.redirect("/");
 	} else {
 		res.redirect("/login");
 	}
@@ -74,6 +80,7 @@ app.post('/login', function(req, res) {
 
 app.get("/logout", function(req, res) {
 	res.clearCookie("loggedIn");
+	res.clearCookie("friendsOnly");
 	res.redirect('/');
 });
 
@@ -89,6 +96,15 @@ app.get("/quotes", function(req, res) {
 	res.sendFile(path.join(__dirname, "/public/html/quotes.html"));
 });
 
+app.get("/friendsonly", function(req, res) {
+	if (req.cookies.friendsOnly) {
+		console.log("found cookie friendsOnly");
+		res.sendFile(path.join(__dirname, "/public/html/friendsOnly.html"));
+	} else {
+		res.redirect("/404");
+	}
+});
+
 app.get('/css/main.css', function(req, res) {
 	res.sendFile(path.join(__dirname, "/public/css/main.css"));
 });
@@ -102,5 +118,5 @@ app.get('*', function(req, res){
 });
 
 app.listen(process.env.PORT || port, () => {
-	console.log(`Listening on port ${port}. Go to http://localhost:${port} to get to the app.`);
+	console.log(`Listening on port ${port} or port ${process.env.PORT}. Go to http://localhost:${port} to get to the app.`);
 });
