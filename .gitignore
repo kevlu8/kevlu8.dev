@@ -2,7 +2,9 @@
 *.bat
 secrets.txt
 passwords.json
+loginInfo.json
 push.sh
+views/
 # Logs
 logs
 *.log
