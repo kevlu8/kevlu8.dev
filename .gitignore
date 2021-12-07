@@ -5,6 +5,7 @@ passwords.json
 loginInfo.json
 push.sh
 views/
+getReddit.py
 # Logs
 logs
 *.log

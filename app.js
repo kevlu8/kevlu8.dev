@@ -2,13 +2,13 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const path = require("path");
-const snoowrap = require("snoowrap");
 const fs = require("fs");
 const readline = require("readline");
 const passwordGenerator = require("./passwordGenerator");
 const cookieParser = require("cookie-parser");
 
 app.set(express.static("public"));
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true })); 
 app.use(cookieParser());
 
@@ -16,29 +16,6 @@ const port = 8080;
 
 let secret = [];
 let isLoggedIn = false;
-
-fs.readFile("secrets.txt", "utf8", function(err, data) {
-	if (err) console.log(err);
-	
-	const splitData = data.split("\r\n");
-
-	for (let i = 0; i < splitData.length; i++) {
-		secret.push(splitData[i]);
-	}
-
-	let UN = secret[0];
-	let PWD = secret[1];
-	let CI = secret[2];
-	let CS = secret[3];
-
-	const reddit = new snoowrap({
-		userAgent: "A script for my personal website in the making, kevlu8.dev",
-		clientId: `${CI}`,
-		clientSecret: `${CS}`,
-		username: `${UN}`,
-		password: `${PWD}`
-	});
-});
 
 app.get('/', function(req, res) {
 	if (req.cookies.loggedIn) {
@@ -141,10 +118,37 @@ app.post("/vip", function(req, res) {
 app.get("/secretstuff", function(req, res) {
 	if (req.cookies.friendsOnly) {
 		console.log("found cookie friendsOnly");
-		res.sendFile(path.join(__dirname, "/views/secretstuff.ejs"));
+		res.render(path.join(__dirname, "/views/secretstuff.ejs"));
 	} else {
 		res.redirect("/404");
 	}
+});
+
+app.post("/secretstuff", function(req, res) {
+	const sub = req.body.sub;
+	const time = req.body.time;
+	const sort = req.body.sort;
+
+	const spawn = require("child_process").spawn;
+	const pythonProcess = spawn('python',["/home/kevlu8/kevlu8.dev/getReddit.py", sub, 10000, sort, time]);
+	
+	pythonProcess.stdout.on('Done', function(Done) {});
+
+	// Loop through lines of text file and put in array
+	const stuff = [];
+	fs.readFile("stuff.txt", "utf8", function(err, data) {
+		if (err) console.log(err);
+		
+		const splitData = data.split("\r\n");
+	
+		for (let i = 0; i < splitData.length; i++) {
+			stuff.push(splitData[i]);
+		}
+
+		const posted = true;
+
+		res.render(path.join(__dirname, "/views/secretstuff.ejs"), {posted: posted, stuff: stuff});
+	});
 });
 
 app.get('/css/main.css', function(req, res) {
