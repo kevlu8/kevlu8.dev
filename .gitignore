@@ -6,6 +6,7 @@ loginInfo.json
 push.sh
 views/
 getReddit.py
+passwordGenerator.js
 # Logs
 logs
 *.log
