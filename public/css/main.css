@@ -8,6 +8,11 @@
     /* border: 1px solid blue; */
 }
 
+img {
+    width: 480px;
+    height: auto;
+}
+
 html {
     overflow-x: hidden;
     background-color: #0f0f0f;

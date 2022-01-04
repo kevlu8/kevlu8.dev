@@ -37,9 +37,22 @@
     <h1>Contribute to nature tagging</h1>
     <br>
 
-    <script>
-        
+    <input type="submit" value="Next Post" onclick="submit()">
+    <br>
+    <img id="nature" src="https://i.redd.it/srrw7fic7l981.jpg" alt="Nature">
+
+    <script type="text/javascript">
+        function submit() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    document.getElementById("nature").src = xhr.response;
+                }
+            }
+            xhr.open('post', '/api/reddit/nature', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            xhr.send();
+        }
     </script>
-    <img src="../../img/nature.jpg" alt="Nature">
 </body>
 </html>
