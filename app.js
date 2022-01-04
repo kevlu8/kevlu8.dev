@@ -4,12 +4,10 @@ const app = express();
 const path = require("path");
 const fs = require("fs");
 const readline = require("readline");
-const cookieParser = require("cookie-parser");
 
 app.set(express.static("public"));
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: true })); 
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 
 const port = 8080;
 
