@@ -6,8 +6,10 @@ const fs = require("fs");
 const readline = require("readline");
 
 app.set(express.static("public"));
+/*
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
+*/
 
 const port = 8080;
 
@@ -63,12 +65,8 @@ app.get('/kevlu8.jpg', function(req, res) {
 	res.sendFile(path.join(__dirname, "/kevlu8.jpg"));
 });
 
-app.get('/404', function(req, res){
-	res.status(404).send("404 Not Found!");
-});
-
 app.get('*', function(req, res){
-	res.redirect("/404");
+	res.status(404).send("404 Not Found!");
 });
 
 app.listen(process.env.PORT || port, () => {
