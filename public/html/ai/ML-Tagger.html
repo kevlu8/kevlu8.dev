@@ -18,7 +18,7 @@
     
     <!-- CSS -->
 
-    <link rel="stylesheet" type='text/css' href="../css/main.css">
+    <link rel="stylesheet" type='text/css' href="../../css/main.css">
 </head>
 <body>
     <header>
@@ -34,14 +34,71 @@
         </nav>
     </header>
 
+    <script>
+        // Detect keypress
+        let checks = [false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+        document.onkeydown = function(e) {
+            if (e.keyCode == 83 && checks[0] == false) {
+                checks[0] = true;
+            }
+            else if (e.keyCode == 85 && checks[1] == false && checks[0] == true) {
+                checks[1] = true;
+            }
+            else if (e.keyCode == 66 && checks[2] == false && checks[1] == true && checks[0] == true) {
+                checks[2] = true;
+            }
+            else if (e.keyCode == 50 && checks[3] == false && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[3] = true;
+            }
+            else if (e.keyCode == 75 && checks[4] == false && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[4] = true;
+            }
+            else if (e.keyCode == 69 && checks[5] == false && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[5] = true;
+            }
+            else if (e.keyCode == 86 && checks[6] == false && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[6] = true;
+            }
+            else if (e.keyCode == 76 && checks[7] == false && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[7] = true;
+            }
+            else if (e.keyCode == 85 && checks[8] == false && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[8] = true;
+            }
+            else if (e.keyCode == 56 && checks[9] == false && checks[8] == true && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[9] = true;
+            }
+            else if (e.keyCode == 79 && checks[10] == false && checks[9] == true && checks[8] == true && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[10] = true;
+            }
+            else if (e.keyCode == 78 && checks[11] == false && checks[10] == true && checks[9] == true && checks[8] == true && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[11] = true;
+            }
+            else if (e.keyCode == 89 && checks[12] == false && checks[11] == true && checks[10] == true && checks[9] == true && checks[8] == true && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[12] = true;
+            }
+            else if (e.keyCode == 84 && checks[13] == false && checks[12] == true && checks[11] == true && checks[10] == true && checks[9] == true && checks[8] == true && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[13] = true;
+            }
+            else if (e.keyCode == 13 && checks[14] == false && checks[13] == true && checks[12] == true && checks[11] == true && checks[10] == true && checks[9] == true && checks[8] == true && checks[7] == true && checks[6] == true && checks[5] == true && checks[4] == true && checks[3] == true && checks[2] == true && checks[1] == true && checks[0] == true) {
+                checks[14] = true;
+            }
+            else {
+                checks = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+            }
+            if (checks[14] == true) {
+                document.getElementById("sussy").hidden = false;
+            }
+        }
+    </script>
+
     <h1>Contribute to ML-Tagger</h1>
     <br>
     <h2>Choose a genre of images to tag</h2>
     <ul>
         <li><a href="/ai/ML-Tagger/nature">Nature</a></li>
         <li><a href="/ai/ML-Tagger/food">Food</a></li>
-        <li><a href="/ai/ML-Tagger/tech">Tech</a></li>
-        <li><a href="/ai/ML-Tagger/sussy">へんたい (WARNING: NSFW)</a></li>
+        <li id="sussy" hidden="true"><a href="/ai/ML-Tagger/sussy">へんたい (WARNING: NSFW)</a></li>
     </ul>
 </body>
 </html>

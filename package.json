@@ -18,7 +18,8 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "nodemon": "^2.0.15",
-    "snoowrap": "^1.23.0"
+    "snoowrap": "^1.23.0",
+    "types": "^0.1.1"
   },
   "repository": {
     "type": "git",

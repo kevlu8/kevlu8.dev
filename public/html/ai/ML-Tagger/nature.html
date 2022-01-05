@@ -39,14 +39,27 @@
 
     <input type="submit" value="Next Post" onclick="submit()">
     <br>
-    <img id="nature" src="https://i.redd.it/srrw7fic7l981.jpg" alt="Nature">
+    <h3 id="postTitle"></h3>
+    <img id="nature" src="" alt="Nature" hidden="true">
 
     <script type="text/javascript">
         function submit() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = () => {
+                let lnk = "", ttl = "";
                 if (xhr.readyState === 4) {
-                    document.getElementById("nature").src = xhr.response;
+                    for (let i = 2; i < 37; i++) {
+                        let t = xhr.response[i];
+                        lnk += t;
+                    }
+                    for (let i = 40; i < xhr.response.length - 2; i++) {
+                        let t = xhr.response[i];
+                        ttl += t;
+                    }
+                    document.getElementById("nature").src = lnk;
+                    document.getElementById("nature").hidden = false;
+                    document.getElementById("postTitle").innerHTML = ttl;
+                    document.getElementById("tag").hidden = false;
                 }
             }
             xhr.open('post', '/api/reddit/nature', true);
@@ -54,5 +67,10 @@
             xhr.send();
         }
     </script>
+
+    <form id="tag" action="/api/aistorage/tag" hidden="true">
+        <input type="text" name="tags" placeholder="Enter tags here">
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

@@ -35,6 +35,46 @@
     </header>
 
     <h1>Contribute to food tagging</h1>
+
+    <input type="submit" value="Next Post" onclick="submit()">
+    <br>
+    <h3 id="postTitle"></h3>
+    <img id="nature" src="" alt="Nature" hidden="true">
+    <br>
+
+    <script type="text/javascript">
+        function submit() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                let lnk = "", ttl = "";
+                if (xhr.readyState === 4) {
+                    for (let i = 2; i < 37; i++) {
+                        let t = xhr.response[i];
+                        lnk += t;
+                    }
+                    for (let i = 40; i < xhr.response.length - 2; i++) {
+                        let t = xhr.response[i];
+                        ttl += t;
+                    }
+                    document.getElementById("nature").src = lnk;
+                    document.getElementById("imgLink").name = lnk;
+                    document.getElementById("nature").hidden = false;
+                    document.getElementById("postTitle").innerHTML = ttl;
+                    document.getElementById("tag").hidden = false;
+                }
+            }
+            xhr.open('post', '/api/reddit/food', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            xhr.send();
+        }
+    </script>
+
+    <form id="tag" action="/api/aistorage/tag" method="POST" hidden="true">
+        <input name="food" hidden="true">
+        <input type="text" placeholder="Enter tags here" name="tags">
+        <input id="imgLink" name="" type="text" hidden="true">
+        <input type="submit" value="Submit">
+    </form>
     
 </body>
 </html>
