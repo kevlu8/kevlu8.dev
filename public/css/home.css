@@ -52,6 +52,7 @@ nav {
 
 .card:hover {
     box-shadow:0 8x 16px 0 rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
 }
 
 .container {
@@ -61,4 +62,22 @@ nav {
 
 img {
     border-radius: 5px 5px 0 0;
+}
+
+.desc {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.descText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkToBruh {
+    color: #0645AD;
 }
