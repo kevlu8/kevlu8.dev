@@ -4,9 +4,11 @@ const app = express();
 const path = require("path");
 const fs = require("fs");
 const readline = require("readline");
+const bodyParser = require("body-parser");
 
 app.set(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const snoowrap = require("snoowrap");
 
@@ -38,6 +40,10 @@ app.get("/about", (req, res) => {
 
 app.get("/quotes", (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/html/quotes.html"));
+});
+
+app.get("/recommendations", (req, res) => {
+	res.sendFile(path.join(__dirname, "/public/html/recommendations.html"));
 });
 
 app.get("/ai", (req, res) => {
@@ -160,23 +166,25 @@ app.post("/api/reddit/sussy", (req, res) => {
 app.post("/api/aistorage/tag", (req, res) => {
 	// Store the image and the tags in the database
 	console.log(req.body)
+	let json = express.json(req.body);
+	console.log(json);
 	let tags = req.body.tags;
 	let img;
 	let type;
 	try {
-		if (typeof req.body.food !== 'undefined') type = food;
+		if (typeof req.body.food !== 'undefined') type = "food";
 	} catch {
 		try {
-			if (typeof req.body.nature !== 'undefined') type = nature;
+			if (typeof req.body.nature !== 'undefined') type = "nature";
 		} catch {
-			if (typeof req.body.sussy !== 'undefined') type = sussy;
+			if (typeof req.body.sussy !== 'undefined') type = "sussy";
 		}
 	}
 
 	let arr = JSON.parse(req.body);
 
 	for (let i = 0; i < arr.length; i++) {
-		console.log (arr[i])
+		console.log(arr[i])
 		if (arr[i].startsWith("https")) {
 			img = arr[i];
 		}
@@ -192,6 +200,10 @@ app.post("/api/aistorage/rate", (req, res) => {
 
 app.get('/css/main.css', (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/css/main.css"));
+});
+
+app.get('/css/home.css', (req, res) => {
+	res.sendFile(path.join(__dirname, "/public/css/home.css"));
 });
 
 app.get('/kevlu8.jpg', (req, res) => {
