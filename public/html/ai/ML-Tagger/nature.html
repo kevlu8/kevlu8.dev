@@ -35,12 +35,11 @@
     </header>
 
     <h1>Contribute to nature tagging</h1>
-    <br>
 
     <input type="submit" value="Next Post" onclick="submit()">
     <br>
     <h3 id="postTitle"></h3>
-    <img id="nature" src="" alt="Nature" hidden="true">
+    <img id="image" src="" hidden="true">
 
     <script type="text/javascript">
         function submit() {
@@ -48,16 +47,14 @@
             xhr.onreadystatechange = () => {
                 let lnk = "", ttl = "";
                 if (xhr.readyState === 4) {
-                    for (let i = 2; i < 37; i++) {
-                        let t = xhr.response[i];
-                        lnk += t;
-                    }
-                    for (let i = 40; i < xhr.response.length - 2; i++) {
-                        let t = xhr.response[i];
-                        ttl += t;
-                    }
-                    document.getElementById("nature").src = lnk;
-                    document.getElementById("nature").hidden = false;
+                    let a = xhr.response.slice(1, -1);
+                    let b = a.split(",");
+                    let c = b[0].slice(1, -1);
+                    let d = b[1].slice(1, -1);
+                    lnk = c, ttl = d;
+                    document.getElementById("image").src = lnk;
+                    document.getElementById("imgLink").name = lnk;
+                    document.getElementById("image").hidden = false;
                     document.getElementById("postTitle").innerHTML = ttl;
                     document.getElementById("tag").hidden = false;
                 }
@@ -68,8 +65,10 @@
         }
     </script>
 
-    <form id="tag" action="/api/aistorage/tag" hidden="true">
-        <input type="text" name="tags" placeholder="Enter tags here">
+    <form id="tag" action="/api/aistorage/tag" method="POST" hidden="true">
+        <input name="nature" hidden="true">
+        <input type="text" class="longAnswer"  placeholder="Enter tags separated by commas here" name="tags">
+        <input id="imgLink" name="" type="text" hidden="true">
         <input type="submit" value="Submit">
     </form>
 </body>

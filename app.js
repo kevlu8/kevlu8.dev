@@ -1,3 +1,5 @@
+/* ----------------- Requires ----------------- */
+
 const express = require("express");
 require("dotenv").config();
 const app = express();
@@ -5,6 +7,8 @@ const path = require("path");
 const fs = require("fs");
 const readline = require("readline");
 const bodyParser = require("body-parser");
+
+/* ----------------- Constants ----------------- */
 
 app.set(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +30,8 @@ const port = 8080;
 cachedImgs = [];
 cachedTitles = [];
 
+/* ----------------- GETs and POSTs ----------------- */
+
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/html/index.html"));
 });
@@ -44,6 +50,10 @@ app.get("/quotes", (req, res) => {
 
 app.get("/recommendations", (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/html/recommendations.html"));
+});
+
+app.get("/personal", (req, res) => {
+	res.sendFile(path.join(__dirname, "/public/html/personal.html"));
 });
 
 app.get("/ai", (req, res) => {
@@ -70,7 +80,10 @@ app.get("/ai/ML-Tagger/sussy", (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/html/ai/ML-Tagger/sussy.html"));
 });
 
+/* ----------------- Below is the code for the API ----------------- */
+
 app.post("/api/reddit/nature", (req, res) => {
+	let url = "", title = "";
 	if (cachedImgs.length == 0 || cachedImgs[0] != "nature") {
 		cachedImgs = [];
 		cachedImgs.push("nature");
@@ -84,24 +97,32 @@ app.post("/api/reddit/nature", (req, res) => {
 				cachedImgs.push(submissions[i].url);
 				cachedTitles.push(submissions[i].title);
 			}
-			let random = Math.floor(Math.random() * submissions.length);
-			let submission = submissions[random];
-			let url = submission.url;
-			let title = submission.title;
-			let arr = [url, title];
-			res.send(arr);
+			while (!url.startsWith("https://i.redd.it" || !url.startsWith("https://i.imgur.com"))) {
+				let random = Math.floor(Math.random() * submissions.length);
+				let submission = submissions[random];
+				url = submission.url;
+				title = submission.title;
+			}
 		});
 	} else {
 		// Images are already cached
 		let random = Math.floor(Math.random() * cachedImgs.length);
-		let url = cachedImgs[random];
-		let title = cachedTitles[random];
+		url = cachedImgs[random];
+		title = cachedTitles[random];
+		while (!url.startsWith("https://i.redd.it" || !url.startsWith("https://i.imgur.com"))) {
+				console.log(url)
+				let random = Math.floor(Math.random() * submissions.length);
+				let submission = submissions[random];
+				title = submission.title;
+				url = submission.url;
+		}
 		let arr = [url, title];
-		res.send(arr);
+		res.send(arr);	
 	}
 });
 
 app.post("/api/reddit/food", (req, res) => {
+	let url = "", title = "";
 	if (cachedImgs.length == 0 || cachedImgs[0] != "food") {
 		cachedImgs = [];
 		cachedImgs.push("food");
@@ -115,20 +136,37 @@ app.post("/api/reddit/food", (req, res) => {
 				cachedImgs.push(submissions[i].url);
 				cachedTitles.push(submissions[i].title);
 			}
-			let random = Math.floor(Math.random() * submissions.length);
-			let submission = submissions[random];
-			let url = submission.url;
-			let title = submission.title;
+			while (!url.startsWith("https://i.redd.it" || !url.startsWith("https://i.imgur.com"))) {
+				console.log(url)
+				let random = Math.floor(Math.random() * submissions.length);
+				let submission = submissions[random];
+				title = submission.title;
+				url = submission.url;
+			}
 			let arr = [url, title];
 			res.send(arr);
 		});
 	} else {
 		// Images are already cached
 		let random = Math.floor(Math.random() * cachedImgs.length);
-		let url = cachedImgs[random];
-		let title = cachedTitles[random];
+		url = cachedImgs[random];
+		title = cachedTitles[random];
+		console.log(url); 
+		while (!url.startsWith("https://i.redd.it" || !url.startsWith("https://i.imgur.com"))) { 
+				let random = Math.floor(Math.random() * cachedImgs.length);
+				let submission = cachedImgs[random];
+				title = cachedTitles.title;
+				url = submission.url;
+		}
+		if (url.startsWith("https://i.redd.it")) {
+			// This is i.redd.it so you'll need to scale the title properly
+		} else if (url.startsWith("https://i.imgur.com")) {
+			// Imgur
+			url.slice(0, -10);
+		}
+	
 		let arr = [url, title];
-		res.send(arr);
+		res.send(arr);	
 	}
 });
 
@@ -146,20 +184,40 @@ app.post("/api/reddit/sussy", (req, res) => {
 				cachedImgs.push(submissions[i].url);
 				cachedTitles.push(submissions[i].title);
 			}
-			let random = Math.floor(Math.random() * submissions.length);
-			let submission = submissions[random];
-			let url = submission.url;
-			let title = submission.title;
-			let arr = [url, title];
-			res.send(arr);
+			let url = "", title = "";
+			while (!url.startsWith("https://i.redd.it" || !url.startsWith("https://i.imgur.com"))) {
+				let random = Math.floor(Math.random() * submissions.length);
+				let submission = submissions[random];
+				url = submission.url;
+				title = submission.title;
+			}
+			if (url.startsWith("https://i.redd.it")) {
+				// This is i.redd.it so you'll need to scale the title properly
+			} else if (url.startsWith("https://i.imgur.com")) {
+				// Imgur
+			}
 		});
 	} else {
 		// Images are already cached
 		let random = Math.floor(Math.random() * cachedImgs.length);
-		let url = cachedImgs[random];
-		let title = cachedTitles[random];
+		url = cachedImgs[random];
+		title = cachedTitles[random];
+		while (!url.startsWith("https://i.redd.it" || !url.startsWith("https://i.imgur.com"))) {
+				console.log(url)
+				let random = Math.floor(Math.random() * submissions.length);
+				let submission = submissions[random];
+				title = submission.title;
+				url = submission.url;
+		}
+		if (url.startsWith("https://i.redd.it")) {
+			// This is i.redd.it so you'll need to scale the title properly
+		} else if (url.startsWith("https://i.imgur.com")) {
+			// Imgur
+			url.slice(0, -10);
+		}
+	
 		let arr = [url, title];
-		res.send(arr);
+		res.send(arr);	
 	}
 });
 
@@ -171,7 +229,7 @@ app.post("/api/aistorage/tag", (req, res) => {
 	let tags = req.body.tags;
 	let img;
 	let type;
-	try {
+	try { // Had to use try catch statements instead of if else due to if statements throwing errors if type is undefined
 		if (typeof req.body.food !== 'undefined') type = "food";
 	} catch {
 		try {
@@ -198,6 +256,8 @@ app.post("/api/aistorage/rate", (req, res) => {
 	// Store the image and the rating in the database
 });
 
+/* ----------------- Other Files ----------------- */
+
 app.get('/css/main.css', (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/css/main.css"));
 });
@@ -213,6 +273,8 @@ app.get('/kevlu8.jpg', (req, res) => {
 app.get('*', (req, res) => {
 	res.status(404).sendFile(path.join(__dirname, "/public/html/404.html"));
 });
+
+/* ----------------- Start Server ----------------- */
 
 app.listen(process.env.PORT || port, () => {
 	console.log(`Listening on port ${process.env.PORT || port}. Go to http://localhost:${process.env.PORT || port} to get to the app.`);

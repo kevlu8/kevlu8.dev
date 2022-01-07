@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kevlu8's Exclusive Things</title>
+    <link rel="stylesheet" type='text/css' href="/css/main.css">
+</head>
+<body>
+    <script type="text/javascript">
+        function submit() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                let lnk = "", ttl = "";
+                if (xhr.readyState === 4) {
+                    for (let i = 2; i < 37; i++) {
+                        let t = xhr.response[i];
+                        lnk += t;
+                    }
+                    for (let i = 40; i < xhr.response.length - 2; i++) {
+                        let t = xhr.response[i];
+                        ttl += t;
+                    }
+                    document.getElementById("hentai").src = lnk;
+                    document.getElementById("postTitle").innerHTML = ttl;
+                }
+            }
+            xhr.open('post', '/api/reddit/sussy', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            xhr.send();
+        }
+    </script>
+
+    <br>
+    <h3 id="postTitle"></h3>
+    <img class="specialImg" id="hentai" src="https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640" onclick="submit()">
+</body>
+</html>
