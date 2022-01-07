@@ -26,6 +26,7 @@
     <meta property="og:description" content="kevlu8's Portfolio and Personal Website">
     <meta property="og:image" content="/kevlu8.jpg">
     <meta property="og:url" content="https://github.com/kevlu8/kevlu8.dev">
+    <meta name="theme-color" content="#149414">
 
 </head>
 <body>
@@ -54,7 +55,7 @@
             </div>
         </div>
         <div class="descText">
-            <h4>
+            <h4 id="descText">
                 Hi! I'm Kevin Lu, better known as kevlu8. I'm an aspiring programmer, currently still in grade 8.
                 I do Windows programming in C++, and I'm currently learning web development in HTML, CSS, and JavaScript.
                 I also enjoy watching anime. My main source of income is from making YouTube videos on my channel <a class="linkToBruh" target="_blank" href="https://www.youtube.com/kevlu8">kevlu8</a>.
@@ -65,5 +66,16 @@
             </h4>
         </div>  
     </div>
+
+    <script>
+        let txt = document.getElementById("descText").innerHTML;
+        document.getElementById("descText").innerHTML = ""
+        for (let i = 0; i < txt.length; i++) {
+            setTimeout(function() {
+                document.getElementById("descText").innerHTML += txt.charAt(i);
+            }, i * 50);
+        }
+    </script>
+
 </body>
 </html>

@@ -1,4 +1,7 @@
 * {
+    display: "flex";
+    justify-content: "center";
+    align-items: "center";
     font-family: "Roboto Mono", monospace;
     padding: 0;
     margin: 0;
@@ -10,6 +13,12 @@
 html {
     overflow-x: hidden;
     background-color: #0f0f0f;
+    /* Center all elements */
+    margin: auto;
+    width: 100%;
+    display: "flex";
+    justify-content: "center";
+    align-items: "center";
 }
 
 nav {
@@ -25,7 +34,7 @@ nav {
     width: 100%;
     background-color: rgba(#0f0f0f, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.7);
-} /*im back*/
+} 
 
 .nav-container a {
     text-decoration: none;
