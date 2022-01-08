@@ -5,76 +5,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About kevlu8</title>
-    <link rel="stylesheet" href="../css/main.css">
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+
+    <link rel="icon" href="../../kevlu8.jpg" type="image/x-icon">
+    
+    <!-- CSS -->
+
+    <link rel="stylesheet" type='text/css' href="../../css/main.css">
+
+    <!-- Open Graph -->
+
+    <meta property="og:title" content="kevlu8">
+    <meta property="og:description" content="About kevlu8">
+    <meta property="og:image" content="/kevlu8.jpg">
+    <meta property="og:url" content="https://github.com/kevlu8/kevlu8.dev">
+    <meta name="theme-color" content="#149414">
+
 </head>
 <body>
+    <header>
+        <nav>
+            <a href="/" class="logo">#</a>
+
+            <div class="nav-container">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/quotes">Quotes</a>
+            </div>
+        </nav>
+    </header>
+
     <header>
         <h1>About kevlu8</h1>
         <h1>Hi, I'm kevlu8, a <span id="hi"></span></h1>
     </header>
-    <script>
-        async function wait(s) {
-            return new Promise(resolve => setTimeout(resolve, s * 1000));
-        }
-        function typeWriter(text) {
-            var i = 0;
-            var speed = 50;
-            var txt = text.split("");
-            var elem = document.getElementById("hi");
-            var timer = setInterval(function() {
-                if (i < txt.length) {
-                    elem.innerHTML += txt[i];
-                    i++;
-                } else {
-                    clearInterval(timer);
-                }
-            }, speed);
-        }
 
-        async function deleteChars() {
-            var elem = document.getElementById("hi");
-            var timer = setInterval(function() {
-                if (elem.innerHTML.length > 0) {
-                    elem.innerHTML = elem.innerHTML.slice(0, -1);
-                } else {
-                    clearInterval(timer);
-                }
-            }, 50);
-            return new Promise(resolve => setTimeout(resolve, 1000));
-        }
+    <a id="programmer" class="fade" href="https://www.github.com/kevlu8" target="_blank" hidden="true">
+        kevlu8 on GitHub
+    </a>
+    <br>
+    <a id="youtuber" class="fade" href="https://www.youtube.com/channel/kevlu8" target="_blank" hidden="true">
+        kevlu8 on YouTube
+    </a>
+    <br>
+    <a id="gamer" class="fade" href="https://www.roblox.com/user/131848892/profile" target="_blank" hidden="true">
+        kevlu8 on Roblox
+    </a>
+    <br>
+    <a id="gamer2" class="fade" href="https://www.lichess.org/kevlu8" target="_blank" hidden="true">
+        kevlu8 on Lichess
+    </a>
+    <br>
+    <a id="gamer3" class="fade" href="https://www.chess.com/member/kevlu8" target="_blank" hidden="true">
+        kevlu8 on Chess.com
+    </a>
+    <br>
+    <a id="streamer" class="fade" href="https://twitch.tv/kevlu8playzchess" target="_blank" hidden="true">
+        kevlu8playzchess on Twitch
+    </a>
+    <br>
+    <a id="anime" class="fade" href="https://myanimelist.net/profile/kevlu8" target="_blank" hidden="true">
+        kevlu8 on MyAnimeList
+    </a>
+    <br>
+    <a id="chessca" class="fade" href="https://chess.ca/en/ratings/p/?id=174338" target="_blank" hidden="true">
+        Kevin Lu on CFC
+    </a>
+    <br>
+    <a id="fide" class="fade" href="https://ratings.fide.com/profile/2641615" target="_blank" hidden="true">
+        Kevin Lu on FIDE
+    </a>
+    <br>
+    <a id="music" class="fade" href="https://soundcloud.com/cryllismusic" target="_blank" hidden="true">
+        Cryllis on SoundCloud
+    </a>
+    <br>
 
-        typeWriter("programmer.");
-        wait(3).then(() => {
-            deleteChars().then(() => {
-                typeWriter("YouTuber.");
-                wait(3).then(() => {
-                    deleteChars().then(() => {
-                        typeWriter("gamer.");
-                        wait(3).then(() => {
-                            deleteChars().then(() => {
-                                typeWriter("streamer.");
-                                wait(3).then(() => {
-                                    deleteChars().then(() => {
-                                        typeWriter("weeb. (NOT WEEABOO)");
-                                        wait(3).then(() => {
-                                            deleteChars().then(() => {
-                                                typeWriter("Canadian.");
-                                                wait(3).then(() => {
-                                                    deleteChars().then(() => {
-                                                        typeWriter("random person on the internet.");
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-        });
-        
-    </script>
+
+    <script src="/js/typewrite.js"></script>
 </body>
 </html>

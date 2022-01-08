@@ -266,6 +266,10 @@ app.get('/css/home.css', (req, res) => {
 	res.sendFile(path.join(__dirname, "/public/css/home.css"));
 });
 
+app.get('/js/typewrite.js', (req, res) => {
+	res.sendFile(path.join(__dirname, "/public/js/typewrite.js"));
+});
+
 app.get('/kevlu8.jpg', (req, res) => {
 	res.sendFile(path.join(__dirname, "/kevlu8.jpg"));
 });

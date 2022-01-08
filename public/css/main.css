@@ -62,7 +62,7 @@ nav {
 }
 
 .card:hover {
-    box-shadow:0 8x 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8x 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -79,4 +79,19 @@ nav {
 .specialImg {
     width: 50vh;
     height: auto;
+}
+
+.fade {
+    -webkit-animation: fadeinout 2s linear forwards;
+    animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  100% { opacity: 1; }
 }
